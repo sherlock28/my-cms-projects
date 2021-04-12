@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Spinner from "components/Spinner";
 import styles from "./FormLogin.module.css";
 // import { useUser } from "hooks/useUser";
+import { signIn } from "services";
 
 export default function FormLogin() {
   // eslint-disable-next-line
@@ -31,6 +32,7 @@ export default function FormLogin() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    signIn({user: 'rodol28', password: '1234'});
     // signIn({ email, password });
   };
 
