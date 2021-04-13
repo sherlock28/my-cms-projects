@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 
-const UserContext = React.createContext({});
+const Context = React.createContext({});
 
 export function UserContextProvider({ children }) {
   const [jwt, setJwt] = useState("");
   const [userId, setUserId] = useState("");
+  const [username, setUsername] = useState("");
 
   return (
-    <UserContext.Provider value={{ jwt, setJwt, userId, setUserId }}>
+    <Context.Provider
+      value={{ jwt, setJwt, userId, setUserId, username, setUsername }}
+    >
       {children}
-    </UserContext.Provider>
+    </Context.Provider>
   );
 }
 
-export default UserContext;
+export default Context;

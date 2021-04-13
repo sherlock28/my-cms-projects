@@ -1,21 +1,22 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Spinner from "components/Spinner";
 import styles from "./FormLogin.module.css";
 import { useUser } from "hooks/useUser";
-import { signInService } from "services";
 
 export default function FormLogin() {
   // eslint-disable-next-line
-  const { signIn, isLoginLoading, hasLoginError, loginMessage } = useUser();;
+  const { signIn, isLogged, isLoginLoading, hasLoginError } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   useEffect(
     () => {
-      // if (isLogged) {
-      //   pushLocation("/home");
-      // }
-    } /*[isLogged, pushLocation]*/
+      if (isLogged) {
+        router.push('/home');
+      }
+    }, [isLogged]
   );
 
   const handleChange = e => {
@@ -25,8 +26,7 @@ export default function FormLogin() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    signInService({ email, password });
-    // signIn({ email, password });
+    signIn({ email, password });
   };
 
   return (
@@ -75,13 +75,13 @@ export default function FormLogin() {
               </div>
             </div>
 
-            {false /*isLoginLoading*/ && (
+            {isLoginLoading && (
               <div className="container d-flex justify-content-center mt-4">
                 <Spinner />
               </div>
             )}
 
-            {false /*hasLoginError*/ && (
+            {hasLoginError && (
               <strong>Credenciales invalidas.</strong>
             )}
           </div>
