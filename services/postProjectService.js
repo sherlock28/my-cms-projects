@@ -1,4 +1,4 @@
-export function postProject({
+export function postProjectService({
   title,
   description,
   repositoryURL,

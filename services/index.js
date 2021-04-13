@@ -1,11 +1,11 @@
-import { signIn } from './signIn'
-import { signOut } from './signOut'
-import { postProject } from './postProject'
-import { deleteProject } from './deleteProject'
+import { signInService } from "./signInService";
+import { signOutService } from "./signOutService";
+import { postProjectService } from "./postProjectService";
+import { deleteProjectService } from "./deleteProjectService";
 
 export {
-    signIn,
-    signOut,
-    postProject,
-    deleteProject
-}
+  signInService,
+  signOutService,
+  postProjectService,
+  deleteProjectService,
+};

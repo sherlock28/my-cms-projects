@@ -1,19 +1,12 @@
 import { useState, useEffect } from "react";
 import Spinner from "components/Spinner";
 import styles from "./FormLogin.module.css";
-// import { useUser } from "hooks/useUser";
-import { signIn } from "services";
+import { useUser } from "hooks/useUser";
+import { signInService } from "services";
 
 export default function FormLogin() {
   // eslint-disable-next-line
-  // const {
-  //   signIn,
-  //   isLoginLoading,
-  //   hasLoginError,
-  //   isLogged,
-  // } = useUser();
-  // eslint-disable-next-line
-  // const [_, pushLocation] = useLocation();
+  const { signIn, isLoginLoading, hasLoginError, loginMessage } = useUser();;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -32,7 +25,7 @@ export default function FormLogin() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    signIn({user: 'rodol28', password: '1234'});
+    signInService({ email, password });
     // signIn({ email, password });
   };
 
