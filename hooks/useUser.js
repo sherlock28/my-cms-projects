@@ -1,6 +1,7 @@
 import { useState, useCallback, useContext } from "react";
 import UserContext from "context/UserContext";
 import { signInService, signOutService } from "services/";
+import { decodeToken } from "libs";
 
 export function useUser() {
   const { jwt, setJwt, userId, setUserId } = useContext(UserContext);
@@ -23,7 +24,7 @@ export function useUser() {
         window.sessionStorage.removeItem("email");
         setState({ loading: false, error: true, message: "Has login error" });
       });
-  }, []);
+  }, [setJwt]);
 
   const signOut = useCallback(({ jwt }) => {}, []);
 
