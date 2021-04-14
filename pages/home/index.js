@@ -1,5 +1,7 @@
 import useSWR from "swr";
 import styles from "./Home.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function HomePage() {
   // const { data, error } = useSWR('/api/hello');
@@ -104,13 +106,10 @@ export default function HomePage() {
                     <td>https://something.com</td>
                     <td>
                       <button onClick={handleEdit} className="btn btn-sm m-1">
-                        Edit
+                        <FontAwesomeIcon icon={faEdit} /> Edit
                       </button>
-                      <button
-                        onClick={handleDelete}
-                        className="btn btn-sm m-1"
-                      >
-                        Delete
+                      <button onClick={handleDelete} className="btn btn-sm m-1">
+                        <FontAwesomeIcon icon={faTrash} /> Delete
                       </button>
                     </td>
                   </tr>
