@@ -15,13 +15,21 @@ export default function HomePage() {
     console.log("submit");
   };
 
+  const handleEdit = () => {
+    console.log("edit");
+  };
+
+  const handleDelete = () => {
+    console.log("delete");
+  };
+
   return (
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-5">
           <div className="card">
             <div className="card-body">
-              <h5 className="card-title text-center">Add a project</h5>
+              <h3 className="card-title text-center">Add a project</h3>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <input
@@ -72,12 +80,45 @@ export default function HomePage() {
                     </label>
                   </div>
                 </div>
-                <button className={`btn ${styles.button_save} btn-block`}>Save</button>
+                <button className={`btn ${styles.button_save} btn-block`}>
+                  Save
+                </button>
               </form>
             </div>
           </div>
         </div>
-        <div className="col-md-7"></div>
+        <div className="col-md-7 mt-5">
+          <div className="table-responsive-sm">
+            <div className="table-responsive-md">
+              <table className="table table-hover table-md">
+                <thead className="thead-dark">
+                  <tr>
+                    <th>Title</th>
+                    <th>Page URL</th>
+                    <th>Operations</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Title 1</td>
+                    <td>https://something.com</td>
+                    <td>
+                      <button onClick={handleEdit} className="btn btn-sm m-1">
+                        Edit
+                      </button>
+                      <button
+                        onClick={handleDelete}
+                        className="btn btn-sm m-1"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

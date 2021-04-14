@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import styles from "styles/Index.module.css";
 
 import FormLogin from "components/FormLogin";
 
@@ -12,6 +12,7 @@ export default function LoginPage() {
       </Head>
 
       <FormLogin />
+
       <footer className={styles.footer}>
         <a
           href="https://github.com/sherlock28"
