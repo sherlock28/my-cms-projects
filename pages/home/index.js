@@ -106,10 +106,10 @@ export default function HomePage() {
                     <td>https://something.com</td>
                     <td>
                       <button onClick={handleEdit} className="btn btn-sm m-1">
-                        <FontAwesomeIcon icon={faEdit} /> Edit
+                        <FontAwesomeIcon icon={faEdit} size="lg"/>  Edit
                       </button>
                       <button onClick={handleDelete} className="btn btn-sm m-1">
-                        <FontAwesomeIcon icon={faTrash} /> Delete
+                        <FontAwesomeIcon icon={faTrash} size="lg"/>  Delete
                       </button>
                     </td>
                   </tr>
