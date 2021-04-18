@@ -5,7 +5,6 @@ import styles from "./FormLogin.module.css";
 import { useUser } from "hooks/useUser";
 
 export default function FormLogin() {
-  // eslint-disable-next-line
   const { signIn, isLogged, isLoginLoading, hasLoginError } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

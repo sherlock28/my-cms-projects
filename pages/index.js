@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "styles/Index.module.css";
-
 import FormLogin from "components/FormLogin";
+// import { useUser } from "hooks/useUser";
 
 export default function LoginPage() {
   return (

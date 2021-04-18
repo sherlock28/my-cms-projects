@@ -4,7 +4,7 @@ import { signInService, signOutService } from "services";
 import { decodeToken } from "libs";
 
 export function useUser() {
-  const { jwt, setJwt, userId, setUserId, username, setUsername } = useContext(
+  const { jwt, setJwt, userId, setUserId, email, setEmail, username, setUsername } = useContext(
     UserContext
   );
   const [state, setState] = useState({
@@ -25,6 +25,7 @@ export function useUser() {
           window.sessionStorage.setItem("username", jwtDecode.username);
           setJwt(res.jwt);
           setUserId(res._id);
+          setEmail(jwtDecode.email);
           setUsername(res.username);
           setState({ loading: false, error: false, message: res.message });
         })
@@ -59,6 +60,7 @@ export function useUser() {
   return {
     jwt,
     userId,
+    email,
     username,
     isLoginLoading: state.loading,
     hasLoginError: state.error,
