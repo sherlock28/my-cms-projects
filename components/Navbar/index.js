@@ -1,8 +1,7 @@
 import { useUser } from "hooks";
-import { getDataSessionStorage } from 'libs';
 
 export default function Navbar() {
-  const { signOut, jwt } = useUser();
+  const { signOut, jwt, email } = useUser();
 
   const handleSignOut = () => {
     signOut({ jwt });
@@ -37,7 +36,7 @@ export default function Navbar() {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              {getDataSessionStorage().username}
+              {email}
             </a>
             <div
               className="dropdown-menu"
