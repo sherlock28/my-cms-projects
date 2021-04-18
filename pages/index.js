@@ -1,9 +1,21 @@
+import { useEffect } from "react";
 import Head from "next/head";
 import styles from "styles/Index.module.css";
 import FormLogin from "components/FormLogin";
-// import { useUser } from "hooks/useUser";
+import Spinner from "components/Spinner";
+import { useRouter } from "next/router";
+import { useUser } from "hooks/useUser";
 
 export default function LoginPage() {
+  const { isLogged } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLogged) {
+      router.push("/home");
+    }
+  }, [isLogged]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -11,18 +23,29 @@ export default function LoginPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <FormLogin />
-
-      <footer className={styles.footer}>
-        <a
-          href="https://github.com/sherlock28"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          rododev{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      {isLogged ? (
+        <div className="container d-flex justify-content-center align-items-center">
+          <Spinner />
+        </div>
+      ) : (
+        <>
+          <FormLogin />{" "}
+          <footer className={styles.footer}>
+            <a
+              href="https://github.com/sherlock28"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              rododev{" "}
+              <img
+                src="/vercel.svg"
+                alt="Vercel Logo"
+                className={styles.logo}
+              />
+            </a>
+          </footer>
+        </>
+      )}
     </div>
   );
 }

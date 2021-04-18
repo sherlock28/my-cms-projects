@@ -1,8 +1,11 @@
 import useSWR from "swr";
+import { useEffect } from "react";
 import styles from "./Home.module.css";
 import Navbar from "components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
+import { useUser } from "hooks/useUser";
 
 export default function HomePage() {
   // const { data, error } = useSWR('/api/hello');
@@ -12,6 +15,14 @@ export default function HomePage() {
 
   // // render data
   // return <div>hello {data.name}</div>
+  const { isLogged } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLogged) {
+      router.push("/");
+    }
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();

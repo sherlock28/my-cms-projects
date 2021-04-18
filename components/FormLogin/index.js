@@ -1,22 +1,12 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import Spinner from "components/Spinner";
 import styles from "./FormLogin.module.css";
 import { useUser } from "hooks/useUser";
 
 export default function FormLogin() {
-  const { signIn, isLogged, isLoginLoading, hasLoginError } = useUser();
+  const { signIn, isLoginLoading, hasLoginError } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter();
-
-  useEffect(
-    () => {
-      if (isLogged) {
-        router.push('/home');
-      }
-    }, [isLogged]
-  );
 
   const handleChange = e => {
     const { name, value } = e.target;
