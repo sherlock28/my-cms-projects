@@ -4,7 +4,7 @@ import styles from "styles/Index.module.css";
 import FormLogin from "components/FormLogin";
 import Spinner from "components/Spinner";
 import { useRouter } from "next/router";
-import { useUser } from "hooks/useUser";
+import { useUser } from "hooks";
 
 export default function LoginPage() {
   const { isLogged } = useUser();

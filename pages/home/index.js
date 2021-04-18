@@ -5,7 +5,7 @@ import Navbar from "components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
-import { useUser } from "hooks/useUser";
+import { useUser } from "hooks";
 
 export default function HomePage() {
   // const { data, error } = useSWR('/api/hello');
@@ -22,7 +22,7 @@ export default function HomePage() {
     if (!isLogged) {
       router.push("/");
     }
-  }, []);
+  }, [isLogged]);
 
   const handleSubmit = e => {
     e.preventDefault();

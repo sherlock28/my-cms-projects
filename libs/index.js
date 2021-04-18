@@ -1,3 +1,4 @@
 import { decodeToken } from "./decodeToken";
+import { getDataSessionStorage } from "./getDataSessionStorage";
 
-export { decodeToken };
+export { decodeToken, getDataSessionStorage };

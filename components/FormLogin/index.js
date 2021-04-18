@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Spinner from "components/Spinner";
 import styles from "./FormLogin.module.css";
-import { useUser } from "hooks/useUser";
+import { useUser } from "hooks";
 
 export default function FormLogin() {
   const { signIn, isLoginLoading, hasLoginError } = useUser();

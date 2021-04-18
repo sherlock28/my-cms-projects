@@ -1,6 +1,11 @@
+import { useUser } from "hooks";
+import { getDataSessionStorage } from 'libs';
+
 export default function Navbar() {
+  const { signOut, jwt } = useUser();
+
   const handleSignOut = () => {
-    console.log("sign out");
+    signOut({ jwt });
   };
 
   return (
@@ -8,6 +13,7 @@ export default function Navbar() {
       <a className="navbar-brand" href="/home">
         Rodolfo Cáceres
       </a>
+
       <button
         className="navbar-toggler"
         type="button"
@@ -19,6 +25,7 @@ export default function Navbar() {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
+
       <div className="collapse navbar-collapse" id="navbarNavDropdown">
         <ul className="navbar-nav ml-auto mx-3">
           <li className="nav-item dropdown">
@@ -30,7 +37,7 @@ export default function Navbar() {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              username
+              {getDataSessionStorage().username}
             </a>
             <div
               className="dropdown-menu"
