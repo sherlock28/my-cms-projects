@@ -1,11 +1,12 @@
 import useSWR from "swr";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import Navbar from "components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBusinessTime, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { useUser } from "hooks";
+import { postProjectService } from "services";
 
 export default function HomePage() {
   // const { data, error } = useSWR('/api/hello');
@@ -15,7 +16,13 @@ export default function HomePage() {
 
   // // render data
   // return <div>hello {data.name}</div>
-  const { isLogged } = useUser();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [repositoryURL, setRepositoryURL] = useState("");
+  const [pageURL, setPageURL] = useState("");
+  const [image, setImage] = useState(null);
+
+  const { isLogged, jwt } = useUser();
   const router = useRouter();
 
   useEffect(() => {
@@ -24,9 +31,28 @@ export default function HomePage() {
     }
   }, [isLogged]);
 
+  const handleChange = e => {
+    const { name, value } = e.target;
+    if (name === "title") setTitle(value);
+    if (name === "description") setDescription(value);
+    if (name === "repositoryURL") setRepositoryURL(value);
+    if (name === "pageURL") setPageURL(value);
+    if (name === "image") setImage(e.target.files[0]);
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("submit");
+    const fd = new FormData();
+    fd.append('title', title)
+    fd.append('description', description)
+    fd.append('repositoryURL', repositoryURL)
+    fd.append('pageURL', pageURL)
+    fd.append('image', image)
+
+    postProjectService({
+      formData: fd,
+      jwt,
+    });
   };
 
   const handleEdit = () => {
@@ -46,9 +72,10 @@ export default function HomePage() {
             <div className="card">
               <div className="card-body">
                 <h3 className="card-title text-center">Add a project</h3>
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
+                <form onSubmit={handleSubmit} encType="multipart/form-data" autoComplete="off">
                   <div className="form-group">
                     <input
+                      onChange={handleChange}
                       type="text"
                       name="title"
                       className="form-control"
@@ -57,6 +84,7 @@ export default function HomePage() {
                   </div>
                   <div className="form-group">
                     <textarea
+                      onChange={handleChange}
                       rows="6"
                       type="text"
                       name="description"
@@ -66,6 +94,7 @@ export default function HomePage() {
                   </div>
                   <div className="form-group">
                     <input
+                      onChange={handleChange}
                       type="text"
                       name="repositoryURL"
                       className="form-control"
@@ -74,6 +103,7 @@ export default function HomePage() {
                   </div>
                   <div className="form-group">
                     <input
+                      onChange={handleChange}
                       type="text"
                       name="pageURL"
                       className="form-control"
@@ -83,6 +113,7 @@ export default function HomePage() {
                   <div className="form-group">
                     <div className="custom-file">
                       <input
+                        onChange={handleChange}
                         type="file"
                         name="image"
                         className="custom-file-input"
