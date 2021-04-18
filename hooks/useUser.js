@@ -40,7 +40,21 @@ export function useUser() {
     [setJwt]
   );
 
-  const signOut = useCallback(({ jwt }) => {}, []);
+  const signOut = useCallback(
+    ({ jwt }) => {
+      setState({ loading: true, error: false, message: null });
+      signOutService({ jwt }).then(res => {
+        if (res.isLogOutOk) {
+          setJwt(null);
+          window.sessionStorage.removeItem("jwt");
+          window.sessionStorage.removeItem("userId");
+          window.sessionStorage.removeItem("email");
+          window.sessionStorage.removeItem("username");
+        }
+      });
+    },
+    [setJwt]
+  );
 
   return {
     jwt,

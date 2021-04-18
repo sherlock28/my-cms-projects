@@ -32,7 +32,7 @@ export default function HomePage() {
           <div className="card">
             <div className="card-body">
               <h3 className="card-title text-center">Add a project</h3>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="form-group">
                   <input
                     type="text"
