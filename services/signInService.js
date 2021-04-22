@@ -18,5 +18,6 @@ export function signInService({ email, password }) {
     .then(res => {
       res.status === "Ok" ? (isLoggedOk = true) : (isLoggedOk = false);
       return { message: res.message, isLoggedOk, jwt };
-    });
+    })
+    .catch(err => console.error(err));
 }

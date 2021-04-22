@@ -14,5 +14,6 @@ export function signOutService({ jwt }) {
     .then(res => {
       res.status === "Ok" ? (isLogOutOk = true) : (isLogOutOk = false);
       return { message: res.message, isLogOutOk };
-    });
+    })
+    .catch(err => console.error(err));
 }
