@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useUser } from "hooks";
 import { postProjectService } from "services";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import Footer from "components/Footer";
 
 export default function HomePage() {
   // const { data, error } = useSWR('/api/hello');
@@ -174,6 +175,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

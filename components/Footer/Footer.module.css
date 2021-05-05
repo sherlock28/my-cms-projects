@@ -1,0 +1,17 @@
+.container_footer {
+  background: #000;
+}
+.icon {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.icon:hover {
+    color: #2e86de;
+    transition: 200ms ease-in;
+  }
+
+.footer_copyright {
+  color: #fff;
+  font-size: 1rem;
+}
