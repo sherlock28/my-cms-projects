@@ -1,10 +1,9 @@
 import useSWR from "swr";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./Home.module.css";
 import Navbar from "components/Navbar";
 import { useRouter } from "next/router";
-import { useUser } from "hooks";
-import { postProjectService } from "services";
+import { useUser, useForm } from "hooks";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import Footer from "components/Footer";
 
@@ -16,44 +15,16 @@ export default function HomePage() {
 
   // // render data
   // return <div>hello {data.name}</div>
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [repositoryURL, setRepositoryURL] = useState("");
-  const [pageURL, setPageURL] = useState("");
-  const [image, setImage] = useState(null);
-
   const { isLogged, jwt } = useUser();
   const router = useRouter();
+
+  const { handleChange, handleSubmit, isSubmiting } = useForm();
 
   useEffect(() => {
     if (!isLogged) {
       router.push("/");
     }
   }, [isLogged]);
-
-  const handleChange = e => {
-    const { name, value } = e.target;
-    if (name === "title") setTitle(value);
-    if (name === "description") setDescription(value);
-    if (name === "repositoryURL") setRepositoryURL(value);
-    if (name === "pageURL") setPageURL(value);
-    if (name === "image") setImage(e.target.files[0]);
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    const fd = new FormData();
-    fd.append("title", title);
-    fd.append("description", description);
-    fd.append("repositoryURL", repositoryURL);
-    fd.append("pageURL", pageURL);
-    fd.append("image", image);
-
-    postProjectService({
-      formData: fd,
-      jwt,
-    });
-  };
 
   const handleEdit = () => {
     console.log("edit");
@@ -68,12 +39,12 @@ export default function HomePage() {
       <Navbar />
       <div className="container mt-5">
         <div className="row">
-          <div className="col-md-5">
+          <div className="col-md-3">
             <div className="card">
               <div className="card-body">
                 <h3 className="card-title text-center">Add a project</h3>
                 <form
-                  onSubmit={handleSubmit}
+                  onSubmit={e => handleSubmit(e, { jwt })}
                   encType="multipart/form-data"
                   autoComplete="off"
                 >
@@ -131,14 +102,14 @@ export default function HomePage() {
                       </label>
                     </div>
                   </div>
-                  <button className={`btn ${styles.button_save} btn-block`}>
+                  <button className={`btn ${styles.button_save} btn-block`} disabled={isSubmiting}>
                     Save
                   </button>
                 </form>
               </div>
             </div>
           </div>
-          <div className="col-md-7 mt-5">
+          <div className="col-md-9 mt-5">
             <div className="table-responsive-sm">
               <div className="table-responsive-md">
                 <table className="table table-md">

@@ -1,22 +1,28 @@
 .button_save {
-    background: #000;
-    color: #fff;
+  background: #000;
+  color: #fff;
 }
 
 .button_save:hover {
-    background: #000;
-    color: #fff;
+  box-shadow: 3px 8px 22px 0px rgba(50, 50, 50, 0.59);
+  -webkit-box-shadow: 3px 8px 22px 0px rgba(50, 50, 50, 0.59);
+  -moz-box-shadow: 3px 8px 22px 0px rgba(50, 50, 50, 0.59);
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.button_save:disabled {
+  color: #36393f;
 }
 
 .btn_delete:hover {
-    color: #fff;
-    background: #ee5253;
-    transition: 200ms ease-in;
+  color: #fff;
+  background: #ee5253;
+  transition: 200ms ease-in;
 }
 
 .btn_edit:hover {
-    color: #fff;
-    background: #54a0ff;
-    transition: 200ms ease-in;
+  color: #fff;
+  background: #54a0ff;
+  transition: 200ms ease-in;
 }
-
