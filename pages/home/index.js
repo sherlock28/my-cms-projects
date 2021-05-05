@@ -2,11 +2,10 @@ import useSWR from "swr";
 import { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import Navbar from "components/Navbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBusinessTime, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { useUser } from "hooks";
 import { postProjectService } from "services";
+import { FaTrash, FaEdit } from "react-icons/fa";
 
 export default function HomePage() {
   // const { data, error } = useSWR('/api/hello');
@@ -43,11 +42,11 @@ export default function HomePage() {
   const handleSubmit = e => {
     e.preventDefault();
     const fd = new FormData();
-    fd.append('title', title)
-    fd.append('description', description)
-    fd.append('repositoryURL', repositoryURL)
-    fd.append('pageURL', pageURL)
-    fd.append('image', image)
+    fd.append("title", title);
+    fd.append("description", description);
+    fd.append("repositoryURL", repositoryURL);
+    fd.append("pageURL", pageURL);
+    fd.append("image", image);
 
     postProjectService({
       formData: fd,
@@ -72,7 +71,11 @@ export default function HomePage() {
             <div className="card">
               <div className="card-body">
                 <h3 className="card-title text-center">Add a project</h3>
-                <form onSubmit={handleSubmit} encType="multipart/form-data" autoComplete="off">
+                <form
+                  onSubmit={handleSubmit}
+                  encType="multipart/form-data"
+                  autoComplete="off"
+                >
                   <div className="form-group">
                     <input
                       onChange={handleChange}
@@ -137,7 +140,7 @@ export default function HomePage() {
           <div className="col-md-7 mt-5">
             <div className="table-responsive-sm">
               <div className="table-responsive-md">
-                <table className="table table-hover table-md">
+                <table className="table table-md">
                   <thead className="thead-dark">
                     <tr>
                       <th>Title</th>
@@ -150,14 +153,17 @@ export default function HomePage() {
                       <td>Title 1</td>
                       <td>https://something.com</td>
                       <td>
-                        <button onClick={handleEdit} className="btn btn-sm m-1">
-                          <FontAwesomeIcon icon={faEdit} size="lg" /> Edit
+                        <button
+                          onClick={handleEdit}
+                          className={`${styles.btn_edit} btn btn-sm m-1`}
+                        >
+                          <FaEdit /> Edit
                         </button>
                         <button
                           onClick={handleDelete}
-                          className="btn btn-sm m-1"
+                          className={`${styles.btn_delete} btn btn-sm m-1`}
                         >
-                          <FontAwesomeIcon icon={faTrash} size="lg" /> Delete
+                          <FaTrash /> Delete
                         </button>
                       </td>
                     </tr>
