@@ -59,6 +59,7 @@ export default function HomePage() {
                       name="title"
                       className="form-control"
                       placeholder="Title..."
+                      required
                     />
                   </div>
                   <div className="form-group">
@@ -70,6 +71,7 @@ export default function HomePage() {
                       name="description"
                       className="form-control"
                       placeholder="Description..."
+                      required
                     />
                   </div>
                   <div className="form-group">
@@ -80,6 +82,7 @@ export default function HomePage() {
                       name="repositoryURL"
                       className="form-control"
                       placeholder="Repository URL..."
+                      required
                     />
                   </div>
                   <div className="form-group">
@@ -90,6 +93,7 @@ export default function HomePage() {
                       name="pageURL"
                       className="form-control"
                       placeholder="Page URL..."
+                      required
                     />
                   </div>
                   <div className="form-group">
@@ -100,6 +104,8 @@ export default function HomePage() {
                         name="image"
                         className="custom-file-input"
                         id="inputGroupFile01"
+                        accept="image/gif,image/png,image/jpeg,image/jpg"
+                        required
                       />
                       <label
                         htmlFor="inputGroupFile01"
