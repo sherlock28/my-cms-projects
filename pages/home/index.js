@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import styles from "./Home.module.css";
 import Navbar from "components/Navbar";
 import { useRouter } from "next/router";
-import { useUser, useForm } from "hooks";
+import { useUser, useForm, useGetProjects } from "hooks";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import Footer from "components/Footer";
 import Spinner from "components/Spinner";
@@ -19,22 +19,23 @@ export default function HomePage() {
   const { isLogged, jwt } = useUser();
   const router = useRouter();
 
-  const {
-    title,
-    description,
-    repositoryURL,
-    pageURL,
-    image,
-    handleChange,
-    handleSubmit,
-    isSubmiting,
-  } = useForm();
-
   useEffect(() => {
     if (!isLogged) {
       router.push("/");
     }
   }, [isLogged]);
+
+  const { isLoading, projects } = useGetProjects({ jwt });
+
+  const {
+    title,
+    description,
+    repositoryURL,
+    pageURL,
+    handleChange,
+    handleSubmit,
+    isSubmiting,
+  } = useForm();
 
   const handleEdit = () => {
     console.log("edit");
