@@ -9,7 +9,7 @@ export default function Row({ project }) {
   return (
     <tr>
       <td>{project.title}</td>
-      <td>{project.repositoryURL}</td>
+      <td><a href={`${project.pageURL}`} target="blanck">{project.pageURL}</a></td>
       <td>
         <button
           onClick={() => {}}
