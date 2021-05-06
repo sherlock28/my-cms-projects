@@ -1,9 +1,11 @@
 import React from "react";
-import { useForm } from "hooks";
+import { useForm, useUser } from "hooks";
 import styles from "./FormProject.module.css";
 import Spinner from "components/Spinner";
 
 export default function FormProject() {
+  const { jwt } = useUser();
+
   const {
     title,
     description,
@@ -88,9 +90,7 @@ export default function FormProject() {
         Save
       </button>
       <div className={styles.spinner_container}>
-        {isSubmiting && (
-          <Spinner height={"30px"} width={"30px"} />
-        )}
+        {isSubmiting && <Spinner height={"30px"} width={"30px"} />}
       </div>
     </form>
   );
