@@ -89,7 +89,7 @@ export default function FormProject() {
       </button>
       <div className={styles.spinner_container}>
         {isSubmiting && (
-          <Spinner height={"30px"} width={"30px"} color={"#09f"} />
+          <Spinner height={"30px"} width={"30px"} />
         )}
       </div>
     </form>

@@ -4,7 +4,7 @@ import Navbar from "components/Navbar";
 import { useRouter } from "next/router";
 import { useUser, useGetProjects } from "hooks";
 import ProjectTable from "components/ProjectTable";
-
+import Spinner from "components/Spinner";
 import Footer from "components/Footer";
 import FormProject from "components/FormProject";
 
@@ -41,7 +41,13 @@ export default function HomePage() {
             </div>
           </div>
           <div className="col-lg-9 mt-5">
-            <ProjectTable projects={projects} />
+            {isLoading ? (
+              <div className="d-flex justify-content-center mt-5">
+                <Spinner height={"50px"} width={"50px"} />
+              </div>
+            ) : (
+              <ProjectTable projects={projects} />
+            )}
           </div>
         </div>
       </div>

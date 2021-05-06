@@ -6,7 +6,7 @@ const StyledLoading = styled.div`
   width: ${props => props.width};
   height: ${props => props.height};
   border-radius: 50%;
-  border-left-color: ${props => props.color};
+  border-left-color: #09f;
 
   animation: spin 1s linear infinite;
 
@@ -20,6 +20,6 @@ const StyledLoading = styled.div`
   }
 `;
 
-export default function Spinner({ height, width, color }) {
-  return <StyledLoading height={height} width={width} color={color} />;
+export default function Spinner({ height, width }) {
+  return <StyledLoading height={height} width={width} />;
 }
