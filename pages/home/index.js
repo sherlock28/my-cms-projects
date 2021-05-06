@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useUser, useForm } from "hooks";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import Footer from "components/Footer";
+import Spinner from "components/Spinner";
 
 export default function HomePage() {
   // const { data, error } = useSWR('/api/hello');
@@ -102,9 +103,17 @@ export default function HomePage() {
                       </label>
                     </div>
                   </div>
-                  <button className={`btn ${styles.button_save} btn-block`} disabled={isSubmiting}>
+                  <button
+                    className={`btn ${styles.button_save} btn-block mb-3`}
+                    disabled={isSubmiting}
+                  >
                     Save
                   </button>
+                  <div className={styles.spinner_container}>
+                    {isSubmiting && (
+                      <Spinner height={'30px'} width={'30px'} color={"#09f"} />
+                    )}
+                  </div>
                 </form>
               </div>
             </div>

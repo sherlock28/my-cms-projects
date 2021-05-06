@@ -11,6 +11,12 @@
   cursor: not-allowed;
 }
 
+.spinner_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .button_save:disabled {
   color: #36393f;
 }
