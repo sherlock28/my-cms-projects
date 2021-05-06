@@ -2,5 +2,6 @@ import { useUser } from "hooks/useUser";
 import { useForm } from "./useForm";
 import { useGetProjects } from "./useGetProjects";
 import { useDeleteProject } from "./useDeleteProject";
+import { useAppContext } from "./useAppContext";
 
-export { useUser, useForm, useGetProjects, useDeleteProject };
+export { useAppContext, useUser, useForm, useGetProjects, useDeleteProject };

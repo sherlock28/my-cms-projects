@@ -1,6 +1,11 @@
 import React from "react";
+import { useAppContext } from "hooks";
+import { useDeleteProject } from "hooks";
 
-export default function ModalDelete({ deleteProject }) {
+export default function ModalDelete() {
+  const { deleteProject } = useDeleteProject();
+  const { projectSelected } = useAppContext();
+
   return (
     <>
       <div
@@ -37,7 +42,7 @@ export default function ModalDelete({ deleteProject }) {
               </button>
 
               <button
-                onClick={() => console.log('usar id')}
+                onClick={() => deleteProject({ idProject: projectSelected })}
                 type="button"
                 className="btn btn-danger"
                 data-dismiss="modal"

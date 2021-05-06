@@ -2,7 +2,11 @@ import Head from "next/head";
 import "../styles/globals.css";
 import "bootswatch/dist/materia/bootstrap.min.css";
 import "animate.css/animate.min.css";
-import { UserContextProvider, ProjectContextProvider } from "context";
+import {
+  AppContextProvider,
+  UserContextProvider,
+  ProjectContextProvider,
+} from "context";
 import HeadContent from "components/HeadContent";
 import Scripts from "components/Scripts";
 
@@ -14,9 +18,11 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <UserContextProvider>
-        <ProjectContextProvider>
-          <Component {...pageProps} />
-        </ProjectContextProvider>
+        <AppContextProvider>
+          <ProjectContextProvider>
+            <Component {...pageProps} />
+          </ProjectContextProvider>
+        </AppContextProvider>
       </UserContextProvider>
 
       <Scripts />

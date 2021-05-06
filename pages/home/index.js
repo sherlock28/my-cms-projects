@@ -2,7 +2,7 @@ import useSWR from "swr";
 import { useEffect } from "react";
 import Navbar from "components/Navbar";
 import { useRouter } from "next/router";
-import { useUser, useGetProjects, useDeleteProject } from "hooks";
+import { useUser, useGetProjects } from "hooks";
 import ProjectTable from "components/ProjectTable";
 import Spinner from "components/Spinner";
 import Footer from "components/Footer";
@@ -27,12 +27,11 @@ export default function HomePage() {
   }, [isLogged]);
 
   const { isLoading, projects } = useGetProjects({ jwt });
-  const { deleteProject } = useDeleteProject();
 
   return (
     <>
       <Navbar />
-      <ModalDelete deleteProject={deleteProject} />
+      <ModalDelete />
       
       <div className="container mt-5">
         <div className="row">
