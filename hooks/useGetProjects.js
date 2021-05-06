@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getProjectsService } from "services";
+import ProjectContext from "context/ProjectContext";
 
 export function useGetProjects({ jwt }) {
-  const [projects, setProjects] = useState([]);
+  const { projects, setProjects } = useContext(ProjectContext);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(jwt => {

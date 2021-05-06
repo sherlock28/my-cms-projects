@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { postProjectService, getProjectsService } from "services";
+import ProjectContext from "context/ProjectContext";
 
 export function useForm() {
+  const { setProjects } = useContext(ProjectContext);
+
   const [isSubmiting, setIsSubmiting] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -20,13 +23,10 @@ export function useForm() {
 
   const handleSubmit = (e, { jwt }) => {
     e.preventDefault();
-    const fd = new FormData();
-    fd.append("title", title);
-    fd.append("description", description);
-    fd.append("repositoryURL", repositoryURL);
-    fd.append("pageURL", pageURL);
-    fd.append("image", image);
+
+    const fd = createFormData();
     setIsSubmiting(true);
+
     postProjectService({
       formData: fd,
       jwt,
@@ -34,6 +34,19 @@ export function useForm() {
       .then(res => {
         setIsSubmiting(false);
         clearFields();
+
+        /* ------------------------------ */
+        /* update the project list 
+        when a new one is added */
+        getProjectsService({ jwt })
+          .then(res => {
+            setProjects(res.data.projects);
+          })
+          .catch(err => {
+            console.error(err);
+          });
+        /* ------------------------------ */
+        
       })
       .catch(err => {
         setIsSubmiting(false);
@@ -47,6 +60,16 @@ export function useForm() {
     setRepositoryURL("");
     setPageURL("");
     setImage("");
+  }
+
+  function createFormData() {
+    const fd = new FormData();
+    fd.append("title", title);
+    fd.append("description", description);
+    fd.append("repositoryURL", repositoryURL);
+    fd.append("pageURL", pageURL);
+    fd.append("image", image);
+    return fd;
   }
 
   return {
