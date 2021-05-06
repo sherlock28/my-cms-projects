@@ -5,7 +5,6 @@ export function postProjectService({ formData, jwt }) {
     method: "POST",
     body: formData,
     headers: {
-      "Content-Type": "application/json",
       Authorization: jwt,
     },
   })

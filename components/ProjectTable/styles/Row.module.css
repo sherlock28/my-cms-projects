@@ -1,0 +1,11 @@
+.btn_delete:hover {
+  color: #fff;
+  background: #ee5253;
+  transition: 200ms ease-in;
+}
+
+.btn_edit:hover {
+  color: #fff;
+  background: #54a0ff;
+  transition: 200ms ease-in;
+}

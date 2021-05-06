@@ -4,7 +4,7 @@ import styles from "./Home.module.css";
 import Navbar from "components/Navbar";
 import { useRouter } from "next/router";
 import { useUser, useForm, useGetProjects } from "hooks";
-import { FaTrash, FaEdit } from "react-icons/fa";
+import ProjectTable from "components/ProjectTable";
 import Footer from "components/Footer";
 import Spinner from "components/Spinner";
 
@@ -50,7 +50,7 @@ export default function HomePage() {
       <Navbar />
       <div className="container mt-5">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-lg-3">
             <div className="card">
               <div className="card-body">
                 <h3 className="card-title text-center">Add a project</h3>
@@ -132,40 +132,8 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="col-md-9 mt-5">
-            <div className="table-responsive-sm">
-              <div className="table-responsive-md">
-                <table className="table table-md">
-                  <thead className="thead-dark">
-                    <tr>
-                      <th>Title</th>
-                      <th>Page URL</th>
-                      <th>Operations</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Title 1</td>
-                      <td>https://something.com</td>
-                      <td>
-                        <button
-                          onClick={handleEdit}
-                          className={`${styles.btn_edit} btn btn-sm m-1`}
-                        >
-                          <FaEdit /> Edit
-                        </button>
-                        <button
-                          onClick={handleDelete}
-                          className={`${styles.btn_delete} btn btn-sm m-1`}
-                        >
-                          <FaTrash /> Delete
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+          <div className="col-lg-9 mt-5">
+            <ProjectTable projects={projects} handleEdit={handleEdit} handleDelete={handleDelete} />
           </div>
         </div>
       </div>
