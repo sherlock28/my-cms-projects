@@ -1,7 +1,7 @@
 import React from "react";
 import Row from "./Row";
 
-export default function ProjectTable({ projects, handleEdit, handleDelete }) {
+export default function ProjectTable({ projects }) {
   return (
     <>
       <div className="table-responsive-sm">
@@ -16,14 +16,7 @@ export default function ProjectTable({ projects, handleEdit, handleDelete }) {
             </thead>
             <tbody>
               {projects.map(project => {
-                return (
-                  <Row
-                    key={project._id}
-                    project={project}
-                    handleEdit={handleEdit}
-                    handleDelete={handleDelete}
-                  />
-                );
+                return <Row key={project._id} project={project} />;
               })}
             </tbody>
           </table>

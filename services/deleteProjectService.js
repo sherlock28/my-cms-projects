@@ -1,7 +1,7 @@
 import { API_URL } from "./settings";
 
 export function deleteProjectService({ idProject, jwt }) {
-  return fetch(`${API_URL}/${idProject}`, {
+  return fetch(`${API_URL}/projects/${idProject}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

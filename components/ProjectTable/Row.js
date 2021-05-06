@@ -1,21 +1,24 @@
 import React from "react";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import styles from "./styles/Row.module.css";
+import { useDeleteProject } from "hooks";
 
-export default function Row({ project, handleEdit, handleDelete }) {
+export default function Row({ project }) {
+  const { deleteProject } = useDeleteProject();
+
   return (
     <tr>
       <td>{project.title}</td>
       <td>{project.repositoryURL}</td>
       <td>
         <button
-          onClick={handleEdit}
+          onClick={() => {}}
           className={`${styles.btn_edit} btn btn-sm m-1`}
         >
           <FaEdit /> Edit
         </button>
         <button
-          onClick={handleDelete}
+          onClick={() => deleteProject({ idProject: project._id })}
           className={`${styles.btn_delete} btn btn-sm m-1`}
         >
           <FaTrash /> Delete

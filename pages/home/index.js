@@ -37,14 +37,6 @@ export default function HomePage() {
     isSubmiting,
   } = useForm();
 
-  const handleEdit = () => {
-    console.log("edit");
-  };
-
-  const handleDelete = () => {
-    console.log("delete");
-  };
-
   return (
     <>
       <Navbar />
@@ -133,7 +125,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="col-lg-9 mt-5">
-            <ProjectTable projects={projects} handleEdit={handleEdit} handleDelete={handleDelete} />
+            <ProjectTable projects={projects} />
           </div>
         </div>
       </div>
