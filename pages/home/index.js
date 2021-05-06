@@ -19,7 +19,16 @@ export default function HomePage() {
   const { isLogged, jwt } = useUser();
   const router = useRouter();
 
-  const { handleChange, handleSubmit, isSubmiting } = useForm();
+  const {
+    title,
+    description,
+    repositoryURL,
+    pageURL,
+    image,
+    handleChange,
+    handleSubmit,
+    isSubmiting,
+  } = useForm();
 
   useEffect(() => {
     if (!isLogged) {
@@ -51,6 +60,7 @@ export default function HomePage() {
                 >
                   <div className="form-group">
                     <input
+                      value={title || ""}
                       onChange={handleChange}
                       type="text"
                       name="title"
@@ -60,6 +70,7 @@ export default function HomePage() {
                   </div>
                   <div className="form-group">
                     <textarea
+                      value={description || ""}
                       onChange={handleChange}
                       rows="6"
                       type="text"
@@ -70,6 +81,7 @@ export default function HomePage() {
                   </div>
                   <div className="form-group">
                     <input
+                      value={repositoryURL || ""}
                       onChange={handleChange}
                       type="text"
                       name="repositoryURL"
@@ -79,6 +91,7 @@ export default function HomePage() {
                   </div>
                   <div className="form-group">
                     <input
+                      value={pageURL || ""}
                       onChange={handleChange}
                       type="text"
                       name="pageURL"
@@ -111,7 +124,7 @@ export default function HomePage() {
                   </button>
                   <div className={styles.spinner_container}>
                     {isSubmiting && (
-                      <Spinner height={'30px'} width={'30px'} color={"#09f"} />
+                      <Spinner height={"30px"} width={"30px"} color={"#09f"} />
                     )}
                   </div>
                 </form>

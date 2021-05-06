@@ -7,7 +7,7 @@ export function useForm() {
   const [description, setDescription] = useState("");
   const [repositoryURL, setRepositoryURL] = useState("");
   const [pageURL, setPageURL] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -26,13 +26,35 @@ export function useForm() {
     fd.append("repositoryURL", repositoryURL);
     fd.append("pageURL", pageURL);
     fd.append("image", image);
+    setIsSubmiting(true);
     postProjectService({
       formData: fd,
       jwt,
-    });
+    })
+      .then(res => {
+        setIsSubmiting(false);
+        clearFields();
+      })
+      .catch(err => {
+        setIsSubmiting(false);
+        console.error(err);
+      });
   };
 
+  function clearFields() {
+    setTitle("");
+    setDescription("");
+    setRepositoryURL("");
+    setPageURL("");
+    setImage("");
+  }
+
   return {
+    title,
+    description,
+    repositoryURL,
+    pageURL,
+    image,
     handleChange,
     handleSubmit,
     isSubmiting,
