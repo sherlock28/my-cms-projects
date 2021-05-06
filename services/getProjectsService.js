@@ -1,9 +1,8 @@
 import { API_URL } from "./settings";
 
-export function postProjectService({ formData, jwt }) {
+export function getProjectsService({ jwt }) {
   return fetch(`${API_URL}/projects`, {
-    method: "POST",
-    body: formData,
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
       Authorization: jwt,
