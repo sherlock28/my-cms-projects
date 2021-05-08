@@ -27,7 +27,6 @@ export function useUser() {
           setUserId(res._id);
           setEmail(jwtDecode.email);
           setUsername(res.username);
-          setState({ loading: false, error: false, message: res.message });
         })
         .catch(err => {
           window.sessionStorage.removeItem("jwt");
