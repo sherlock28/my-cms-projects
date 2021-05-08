@@ -5,16 +5,27 @@ import {
   getProjectsService,
 } from "services";
 import ProjectContext from "context/ProjectContext";
+import { useAppContext } from "hooks";
 
 export function useForm() {
+  const {
+    isFormEdit,
+    title,
+    description,
+    repositoryURL,
+    pageURL,
+    image,
+    setTitle,
+    setDescription,
+    setRepositoryURL,
+    setPageURL,
+    setImage,
+  } = useAppContext();
   const { setProjects } = useContext(ProjectContext);
 
   const [isSubmiting, setIsSubmiting] = useState(false);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [repositoryURL, setRepositoryURL] = useState("");
-  const [pageURL, setPageURL] = useState("");
-  const [image, setImage] = useState("");
+
+  if (!isFormEdit) clearFields();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -25,9 +36,13 @@ export function useForm() {
     if (name === "image") setImage(e.target.files[0]);
   };
 
-  const handleSubmitSave = (e, { jwt }) => {
+  const handleSubmit = (e, { jwt }) => {
     e.preventDefault();
+    if (isFormEdit) return updateProject(e, { jwt });
+    saveProject(e, { jwt });
+  };
 
+  const saveProject = (e, { jwt }) => {
     const fd = createFormData();
     setIsSubmiting(true);
 
@@ -40,8 +55,8 @@ export function useForm() {
         clearFields();
 
         /* ------------------------------ */
-        /* update the project list 
-        when a new one is added */
+        /* update the project list
+      when a new one is added */
         getProjectsService({ jwt })
           .then(res => {
             setProjects(res.data.projects);
@@ -57,11 +72,11 @@ export function useForm() {
       });
   };
 
-  const handleSubmitUpdate = (e, { jwt }) => {
-    e.preventDefault();
-
-    const fd = createFormData();
-    setIsSubmiting(true);
+  const updateProject = (e, { jwt }) => {
+    // e.preventDefault();
+    // const fd = createFormData();
+    // setIsSubmiting(true);
+    console.log("edit");
   };
 
   function clearFields() {
@@ -74,6 +89,12 @@ export function useForm() {
 
   function createFormData() {
     const fd = new FormData();
+    console.log(title);
+    console.log(description);
+    console.log(repositoryURL);
+    console.log(pageURL);
+    console.log(image);
+
     fd.append("title", title);
     fd.append("description", description);
     fd.append("repositoryURL", repositoryURL);
@@ -83,14 +104,8 @@ export function useForm() {
   }
 
   return {
-    title,
-    description,
-    repositoryURL,
-    pageURL,
-    image,
     handleChange,
-    handleSubmitSave,
-    handleSubmitUpdate,
+    handleSubmit,
     isSubmiting,
   };
 }

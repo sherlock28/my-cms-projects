@@ -7,6 +7,16 @@ export function useAppContext() {
     setProjectSelected,
     isFormEdit,
     setIsFormEdit,
+    title,
+    setTitle,
+    description,
+    setDescription,
+    repositoryURL,
+    setRepositoryURL,
+    pageURL,
+    setPageURL,
+    image,
+    setImage,
   } = useContext(AppContext);
 
   return {
@@ -14,5 +24,15 @@ export function useAppContext() {
     setProjectSelected,
     isFormEdit,
     setIsFormEdit,
+    title,
+    setTitle,
+    description,
+    setDescription,
+    repositoryURL,
+    setRepositoryURL,
+    pageURL,
+    setPageURL,
+    image,
+    setImage,
   };
 }

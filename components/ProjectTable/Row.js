@@ -1,10 +1,25 @@
 import React from "react";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import styles from "./styles/Row.module.css";
-import { useAppContext } from "hooks";
+import { useAppContext, useUser, useGetProjectById } from "hooks";
 
 export default function Row({ project }) {
-  const { setProjectSelected, isFormEdit, setIsFormEdit } = useAppContext();
+  const { jwt } = useUser();
+
+  const { setFieldsForm } = useGetProjectById();
+
+  const {
+    projectSelected,
+    setProjectSelected,
+    isFormEdit,
+    setIsFormEdit,
+  } = useAppContext();
+
+  const shouldClassBeAdded =
+    isFormEdit && projectSelected === project._id ? styles.is_edit_mode : "";
+
+  const shouldItBeDeactivated =
+    projectSelected !== project._id && isFormEdit ? true : false;
 
   return (
     <tr>
@@ -19,10 +34,10 @@ export default function Row({ project }) {
           onClick={() => {
             setProjectSelected(project._id);
             setIsFormEdit(prev => !prev);
+            setFieldsForm(project._id, jwt);
           }}
-          className={`${styles.btn_edit} btn btn-sm m-1 ${
-            isFormEdit ? styles.is_edit_mode : ""
-          }`}
+          className={`${styles.btn_edit} btn btn-sm m-1 ${shouldClassBeAdded}`}
+          disabled={shouldItBeDeactivated}
         >
           <FaEdit /> Edit
         </button>

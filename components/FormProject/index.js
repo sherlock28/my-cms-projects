@@ -5,21 +5,19 @@ import Spinner from "components/Spinner";
 
 export default function FormProject() {
   const { jwt } = useUser();
-  const { isFormEdit } = useAppContext();
-
   const {
+    isFormEdit,
     title,
     description,
     repositoryURL,
     pageURL,
-    handleChange,
-    handleSubmitSave,
-    isSubmiting,
-  } = useForm();
+  } = useAppContext();
+
+  const { handleChange, handleSubmit, isSubmiting } = useForm();
 
   return (
     <form
-      onSubmit={e => handleSubmitSave(e, { jwt })}
+      onSubmit={e => handleSubmit(e, { jwt })}
       encType="multipart/form-data"
       autoComplete="off"
     >

@@ -4,6 +4,7 @@ import { postProjectService } from "./postProjectService";
 import { getProjectsService } from "./getProjectsService";
 import { deleteProjectService } from "./deleteProjectService";
 import { updateProjectService } from "./updateProjectService";
+import { getProjectByIdService } from "./getProjectByIdService";
 
 export {
   signInService,
@@ -12,4 +13,5 @@ export {
   deleteProjectService,
   getProjectsService,
   updateProjectService,
+  getProjectByIdService,
 };

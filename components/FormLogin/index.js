@@ -66,7 +66,7 @@ export default function FormLogin() {
 
             {isLoginLoading && (
               <div className="container d-flex justify-content-center mt-4">
-                <Spinner />
+                <Spinner height={"50px"} width={"50px"}/>
               </div>
             )}
 

@@ -35,6 +35,7 @@ export default function HomePage() {
       
       <div className="container mt-5">
         <div className="row">
+
           <div className="col-lg-3">
             <div className="card">
               <div className="card-body">
@@ -43,6 +44,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+
           <div className="col-lg-9 mt-5">
             {isLoading ? (
               <div className="d-flex justify-content-center mt-5">
@@ -52,6 +54,7 @@ export default function HomePage() {
               <ProjectTable projects={projects} />
             )}
           </div>
+          
         </div>
       </div>
       <Footer />
