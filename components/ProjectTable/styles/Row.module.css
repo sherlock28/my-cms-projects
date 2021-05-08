@@ -9,3 +9,8 @@
   background: #54a0ff;
   transition: 200ms ease-in;
 }
+
+.is_edit_mode {
+  color: #fff;
+  background: #54a0ff;
+}

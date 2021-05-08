@@ -4,7 +4,7 @@ import styles from "./styles/Row.module.css";
 import { useAppContext } from "hooks";
 
 export default function Row({ project }) {
-  const { setProjectSelected } = useAppContext();
+  const { setProjectSelected, isFormEdit, setIsFormEdit } = useAppContext();
 
   return (
     <tr>
@@ -15,7 +15,15 @@ export default function Row({ project }) {
         </a>
       </td>
       <td>
-        <button className={`${styles.btn_edit} btn btn-sm m-1`}>
+        <button
+          onClick={() => {
+            setProjectSelected(project._id);
+            setIsFormEdit(prev => !prev);
+          }}
+          className={`${styles.btn_edit} btn btn-sm m-1 ${
+            isFormEdit ? styles.is_edit_mode : ""
+          }`}
+        >
           <FaEdit /> Edit
         </button>
         <button

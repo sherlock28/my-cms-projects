@@ -1,5 +1,9 @@
 import { useState, useContext } from "react";
-import { postProjectService, getProjectsService } from "services";
+import {
+  postProjectService,
+  updateProjectService,
+  getProjectsService,
+} from "services";
 import ProjectContext from "context/ProjectContext";
 
 export function useForm() {
@@ -21,7 +25,7 @@ export function useForm() {
     if (name === "image") setImage(e.target.files[0]);
   };
 
-  const handleSubmit = (e, { jwt }) => {
+  const handleSubmitSave = (e, { jwt }) => {
     e.preventDefault();
 
     const fd = createFormData();
@@ -46,12 +50,18 @@ export function useForm() {
             console.error(err);
           });
         /* ------------------------------ */
-        
       })
       .catch(err => {
         setIsSubmiting(false);
         console.error(err);
       });
+  };
+
+  const handleSubmitUpdate = (e, { jwt }) => {
+    e.preventDefault();
+
+    const fd = createFormData();
+    setIsSubmiting(true);
   };
 
   function clearFields() {
@@ -79,7 +89,8 @@ export function useForm() {
     pageURL,
     image,
     handleChange,
-    handleSubmit,
+    handleSubmitSave,
+    handleSubmitUpdate,
     isSubmiting,
   };
 }

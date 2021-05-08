@@ -25,7 +25,7 @@ export default function LoginPage() {
 
       {isLogged ? (
         <div className="container d-flex justify-content-center align-items-center">
-          <Spinner />
+          <Spinner height={"50px"} width={"50px"} />
         </div>
       ) : (
         <>

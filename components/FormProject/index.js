@@ -1,10 +1,11 @@
 import React from "react";
-import { useForm, useUser } from "hooks";
+import { useForm, useUser, useAppContext } from "hooks";
 import styles from "./FormProject.module.css";
 import Spinner from "components/Spinner";
 
 export default function FormProject() {
   const { jwt } = useUser();
+  const { isFormEdit } = useAppContext();
 
   const {
     title,
@@ -12,13 +13,13 @@ export default function FormProject() {
     repositoryURL,
     pageURL,
     handleChange,
-    handleSubmit,
+    handleSubmitSave,
     isSubmiting,
   } = useForm();
 
   return (
     <form
-      onSubmit={e => handleSubmit(e, { jwt })}
+      onSubmit={e => handleSubmitSave(e, { jwt })}
       encType="multipart/form-data"
       autoComplete="off"
     >
@@ -87,7 +88,7 @@ export default function FormProject() {
         className={`btn ${styles.button_save} btn-block mb-3`}
         disabled={isSubmiting}
       >
-        Save
+        {isFormEdit ? "Update" : "Save"}
       </button>
       <div className={styles.spinner_container}>
         {isSubmiting && <Spinner height={"30px"} width={"30px"} />}
