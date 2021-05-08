@@ -9,6 +9,8 @@ import { useAppContext } from "hooks";
 
 export function useForm() {
   const {
+    projectSelected,
+    setProjectSelected,
     isFormEdit,
     title,
     description,
@@ -21,6 +23,7 @@ export function useForm() {
     setPageURL,
     setImage,
   } = useAppContext();
+
   const { setProjects } = useContext(ProjectContext);
 
   const [isSubmiting, setIsSubmiting] = useState(false);
@@ -38,11 +41,11 @@ export function useForm() {
 
   const handleSubmit = (e, { jwt }) => {
     e.preventDefault();
-    if (isFormEdit) return updateProject(e, { jwt });
-    saveProject(e, { jwt });
+    if (isFormEdit) return updateProject(e, jwt);
+    saveProject(e, jwt);
   };
 
-  const saveProject = (e, { jwt }) => {
+  const saveProject = (e, jwt) => {
     const fd = createFormData();
     setIsSubmiting(true);
 
@@ -72,11 +75,37 @@ export function useForm() {
       });
   };
 
-  const updateProject = (e, { jwt }) => {
-    // e.preventDefault();
-    // const fd = createFormData();
-    // setIsSubmiting(true);
-    console.log("edit");
+  const updateProject = (e, jwt) => {
+    const fd = createFormData();
+    setIsSubmiting(true);
+
+    updateProjectService({
+      idProject: projectSelected,
+      formData: fd,
+      jwt,
+    })
+      .then(res => {
+        setIsSubmiting(false);
+        setProjectSelected(0);
+        clearFields();
+
+        /* ------------------------------ */
+        /* update the project list
+      when a new one is added */
+        getProjectsService({ jwt })
+          .then(res => {
+            setProjects(res.data.projects);
+          })
+          .catch(err => {
+            console.error(err);
+          });
+        /* ------------------------------ */
+      })
+      .catch(err => {
+        setIsSubmiting(false);
+        setProjectSelected(0);
+        console.error(err);
+      });
   };
 
   function clearFields() {
@@ -89,12 +118,6 @@ export function useForm() {
 
   function createFormData() {
     const fd = new FormData();
-    console.log(title);
-    console.log(description);
-    console.log(repositoryURL);
-    console.log(pageURL);
-    console.log(image);
-
     fd.append("title", title);
     fd.append("description", description);
     fd.append("repositoryURL", repositoryURL);
