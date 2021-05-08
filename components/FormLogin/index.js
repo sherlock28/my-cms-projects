@@ -56,6 +56,7 @@ export default function FormLogin() {
                   <div className="form-group">
                     <button
                       className={`${styles.button_enter} btn btn-lg btn-block`}
+                      disabled={isLoginLoading}
                     >
                       Entrar
                     </button>

@@ -8,3 +8,6 @@
     color: #fff;
 }
 
+.button_enter:disabled {
+    color: #36393f;
+  }
