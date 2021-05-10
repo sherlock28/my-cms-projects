@@ -1,7 +1,7 @@
 import { useUser } from "hooks";
 
 export default function Navbar() {
-  const { signOut, jwt, email } = useUser();
+  const { signOut, jwt, username } = useUser();
 
   const handleSignOut = () => {
     signOut({ jwt });
@@ -36,7 +36,7 @@ export default function Navbar() {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              {email}
+              {username}
             </a>
             <div
               className="dropdown-menu"

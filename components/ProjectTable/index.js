@@ -1,7 +1,11 @@
 import React from "react";
+import { useUser, useGetProjects } from "hooks";
 import Row from "./Row";
 
-export default function ProjectTable({ projects }) {
+export default function ProjectTable() {
+  
+  const { projects } = useGetProjects();
+
   return (
     <>
       <div className="table-responsive-sm">

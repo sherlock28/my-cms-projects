@@ -17,7 +17,7 @@ export default function HomePage() {
 
   // // render data
   // return <div>hello {data.name}</div>
-  const { isLogged, jwt } = useUser();
+  const { isLogged } = useUser();
   const router = useRouter();
 
   useEffect(() => {
@@ -26,7 +26,8 @@ export default function HomePage() {
     }
   }, [isLogged]);
 
-  const { isLoading, projects } = useGetProjects({ jwt });
+  const { isLoading } = useGetProjects();
+  
 
   return (
     <>
@@ -51,7 +52,7 @@ export default function HomePage() {
                 <Spinner height={"50px"} width={"50px"} />
               </div>
             ) : (
-              <ProjectTable projects={projects} />
+              <ProjectTable />
             )}
           </div>
           

@@ -6,12 +6,14 @@ import {
 } from "services";
 import ProjectContext from "context/ProjectContext";
 import { useAppContext } from "hooks";
+import { useEffect } from "react";
 
 export function useForm() {
   const {
     projectSelected,
     setProjectSelected,
     isFormEdit,
+    setIsFormEdit,
     title,
     description,
     repositoryURL,
@@ -28,7 +30,9 @@ export function useForm() {
 
   const [isSubmiting, setIsSubmiting] = useState(false);
 
-  if (!isFormEdit) clearFields();
+  useEffect(() => {
+    if (!isFormEdit) clearFields();
+  }, []);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -41,11 +45,11 @@ export function useForm() {
 
   const handleSubmit = (e, { jwt }) => {
     e.preventDefault();
-    if (isFormEdit) return updateProject(e, jwt);
-    saveProject(e, jwt);
+    if (isFormEdit) return updateProject(jwt);
+    saveProject(jwt);
   };
 
-  const saveProject = (e, jwt) => {
+  const saveProject = jwt => {
     const fd = createFormData();
     setIsSubmiting(true);
 
@@ -75,7 +79,7 @@ export function useForm() {
       });
   };
 
-  const updateProject = (e, jwt) => {
+  const updateProject = jwt => {
     const fd = createFormData();
     setIsSubmiting(true);
 
@@ -85,8 +89,9 @@ export function useForm() {
       jwt,
     })
       .then(res => {
+        setIsFormEdit(false);
         setIsSubmiting(false);
-        setProjectSelected(0);
+        setProjectSelected(undefined);
         clearFields();
 
         /* ------------------------------ */

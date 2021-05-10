@@ -10,7 +10,7 @@ export function useDeleteProject() {
 
   const deleteProject = ({ idProject }) => {
     setIsSubmiting(true);
-    deleteProjectService({ idProject })
+    deleteProjectService({ idProject, jwt })
       .then(res => {
         setIsSubmiting(false);
         /* ------------------------------ */
