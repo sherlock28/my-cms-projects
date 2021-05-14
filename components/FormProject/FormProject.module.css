@@ -20,3 +20,7 @@
 .button_save:disabled {
   color: #36393f;
 }
+
+.form_input {
+  font-size: 1rem;
+}

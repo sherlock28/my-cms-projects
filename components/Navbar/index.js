@@ -1,4 +1,5 @@
 import { useUser } from "hooks";
+import styles from "./Navbar.module.css";
 
 export default function Navbar() {
   const { signOut, jwt, email } = useUser();
@@ -6,10 +7,10 @@ export default function Navbar() {
   const handleSignOut = () => {
     signOut({ jwt });
   };
-
+  // navbar-dark bg-dark d
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a className="navbar-brand" href="/home">
+    <nav className={`${styles.navbar_container} navbar navbar-expand-lg`}>
+      <a className={`${styles.navbar_item} navbar-brand`} href="/home">
         Rodolfo Cáceres
       </a>
 
@@ -29,7 +30,7 @@ export default function Navbar() {
         <ul className="navbar-nav ml-auto mx-3">
           <li className="nav-item dropdown">
             <a
-              className="nav-link dropdown-toggle"
+              className={`${styles.navbar_item} nav-link dropdown-toggle`}
               href="#"
               id="navbarDropdownMenuLink"
               data-toggle="dropdown"

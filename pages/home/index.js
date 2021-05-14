@@ -37,7 +37,7 @@ export default function HomePage() {
       <div className="container mt-5">
         <div className="row">
 
-          <div className="col-lg-3">
+          <div className="col-lg-4">
             <div className="card">
               <div className="card-body">
                 <h3 className="card-title text-center">Add a project</h3>
@@ -46,7 +46,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="col-lg-9 mt-5">
+          <div className="col-lg-8 mt-5">
             {isLoading ? (
               <div className="d-flex justify-content-center mt-5">
                 <Spinner height={"50px"} width={"50px"} />

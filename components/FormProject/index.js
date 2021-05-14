@@ -5,13 +5,8 @@ import Spinner from "components/Spinner";
 
 export default function FormProject() {
   const { jwt } = useUser();
-  const {
-    isFormEdit,
-    title,
-    description,
-    repositoryURL,
-    pageURL,
-  } = useAppContext();
+  const { isFormEdit, title, description, repositoryURL, pageURL } =
+    useAppContext();
 
   const { handleChange, handleSubmit, isSubmiting } = useForm();
 
@@ -27,7 +22,7 @@ export default function FormProject() {
           onChange={handleChange}
           type="text"
           name="title"
-          className="form-control"
+          className={`${styles.form_input} form-control`}
           placeholder="Title..."
           required
         />
@@ -39,7 +34,7 @@ export default function FormProject() {
           rows="6"
           type="text"
           name="description"
-          className="form-control"
+          className={`${styles.form_input} form-control`}
           placeholder="Description..."
           required
         />
@@ -50,7 +45,7 @@ export default function FormProject() {
           onChange={handleChange}
           type="text"
           name="repositoryURL"
-          className="form-control"
+          className={`${styles.form_input} form-control`}
           placeholder="Repository URL..."
           required
         />
@@ -61,7 +56,7 @@ export default function FormProject() {
           onChange={handleChange}
           type="text"
           name="pageURL"
-          className="form-control"
+          className={`${styles.form_input} form-control`}
           placeholder="Page URL..."
           required
         />
@@ -77,7 +72,10 @@ export default function FormProject() {
             accept="image/gif,image/png,image/jpeg,image/jpg"
             required
           />
-          <label htmlFor="inputGroupFile01" className="custom-file-label">
+          <label
+            htmlFor="inputGroupFile01"
+            className={`${styles.form_input} custom-file-label`}
+          >
             Choose an image...
           </label>
         </div>
